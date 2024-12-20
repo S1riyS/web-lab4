@@ -1,6 +1,6 @@
 #header {
     background-color: var(--surface-0);
-    padding: 0.5em;
+    padding: 0.5em 1.0em 0.5em 1.0em;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     color: var(--text-color);
     display: flex;
@@ -17,6 +17,9 @@
 
 .align-right {
     text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 #logout-btn {
@@ -49,7 +52,6 @@
     .align-right {
         width: 33.33%;
         display: flex;
-        flex-direction: column;
     }
 }
 
@@ -61,9 +63,6 @@
 
     .align-right {
         width: 50%;
-        display: flex;
-        flex-direction: row;
-        margin-right: 2rem;
     }
 }
 
