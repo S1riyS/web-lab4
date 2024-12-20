@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { of, filter, map, pipe } from 'rxjs';
+import { map } from 'rxjs';
 
 interface Token {
   token: string,

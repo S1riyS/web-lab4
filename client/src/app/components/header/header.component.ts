@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LayoutService } from '../../services/layout.service';
 
 @Component({

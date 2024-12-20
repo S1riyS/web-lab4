@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { of, filter, map, pipe } from 'rxjs';
+import { map } from 'rxjs';
 
 export interface Shot {
   x: number,
