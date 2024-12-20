@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<div id="register-container">
+  <p-card id="register-card" [header]="'SIGN_UP.SIGN_UP' | translate">
+      <div>
+        {{ "SIGN_UP.HAVE_ACCOUND" | translate }} <a routerLink="/login" routerLinkActive="active">{{ "SIGN_UP.LOGIN" | translate }}</a>
+      </div>
+
+      <p-divider></p-divider>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="input-container">
+          <label for="username">{{ "SIGN_UP.LABEL.USERNAME" | translate }}</label>
+          <input type="text" [pTooltip]="usernameToolTip" tooltipEvent="focus" pInputText class="p-inputtext-sm" id="username" formControlName="username" />
+        </div>
+        <div class="input-container">
+          <label for="password">{{ "SIGN_UP.LABEL.PASSWORD" | translate }}</label>
+          <p-password formControlName="password" [pTooltip]="passwordToolTip" tooltipEvent="focus" class="p-inputtext-sm" [feedback]="false" [toggleMask]="true"></p-password>
+        </div>
+        <div class="input-container">
+          <label for="password">{{ "SIGN_UP.LABEL.CONFIRM" | translate }}</label>
+          <p-password formControlName="confirmPassword" [pTooltip]="confirmToolTip" tooltipEvent="focus" class="p-inputtext-sm" [feedback]="false" [toggleMask]="true"></p-password>
+        </div>
+
+        <div *ngIf="conflict" class="error-message">
+          {{ "SIGN_UP.ERRORS.USER_EXISTS" | translate }}
+        </div>
+
+        <div *ngIf="error" class="error-message">
+          {{ "SIGN_UP.ERRORS.SIGN_UP_ERROR" | translate }}
+        </div>
+
+      <p-button type="submit" [label]="'SIGN_UP.SIGN_UP' | translate"></p-button>
+    </form>
+  </p-card>
+</div>

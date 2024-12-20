@@ -1,0 +1,57 @@
+{
+    "HOME": {
+        "SUBMIT": "Submit",
+        "CLEAR": "Clear",
+        "HIT": "Hit",
+        "MISS": "Miss",
+        "TIME": "Time",
+        "HISTORY": "History",
+        "ERRORS": {
+            "R_SHOULD_BE_POSITIVE": "R should be positive",
+            "AUTH_ERROR": "Authorization error"
+        }
+    },
+    "HEADER": {
+        "LOGOUT": "Logout",
+        "TITLE": "Lab #4",
+        "AUTHOR_NAME": "Ankudinov Kirill",
+        "AUTHOR_GROUP": "Group: P3218",
+        "VARIANT": "Variant: 7585"
+    },
+    "LOGIN": {
+        "LOGIN": "Login",
+        "DONT_HAVE_ACCOUNT": "Don't have an account?",
+        "SIGN_UP_HERE": "Sign up here",
+        "LABEL": {
+            "USERNAME": "Username:",
+            "PASSWORD": "Password:"
+        },
+        "LOGIN_ERROR": "Login error. Check the credentials"
+    },
+    "SIGN_UP": {
+        "SIGN_UP": "Sign up",
+        "HAVE_ACCOUND": "Have an account?",
+        "LOGIN": "Login here",
+        "LABEL": {
+            "USERNAME": "Username:",
+            "PASSWORD": "Password:",
+            "CONFIRM": "Confirm password:"
+        },
+        "ERRORS": {
+            "FILL_IN_THE_FIELD": "Fill in the field",
+            "USERNAME_SHORT": "Username is too short",
+            "USERNAME_LONG": "Username is too long",
+            "USERNAME_ILLEGAL_CHARACTERS": "Username contains invalid characters",
+            "PASSWORD_SHORT": "Password is too short",
+            "PASSWORD_LONG": "Password is too long",
+            "PASSWORD_DO_NOT_MATCH": "Passwords don't match",
+            "USER_EXISTS": "This username is already taken. Try another?",
+            "SIGN_UP_ERROR": "Registration failed. Check the credentials"
+        }
+    },
+    "NOT_FOUND": {
+        "TITLE": "Page not found",
+        "DESCRIPTION": "The requested page is not found.",
+        "RETURN_TO_HOME_PAGE": "Return to the home page"
+    }
+}

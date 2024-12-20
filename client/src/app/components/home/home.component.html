@@ -1,0 +1,117 @@
+<app-header></app-header>
+
+<p-toast position="bottom-right"></p-toast>
+
+
+<div id="content-container">
+    <div id="input-container">
+        <div id="svg-card"  class="ui-widget">
+            <svg id="svg-figure" (click)="onClick($event)" height="300" width="300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Triangle -->
+                <polygon fill="#3399FF"
+                    points="50 150 150 150 150 50" />
+                <!-- Rect -->
+                <polygon fill="#3399FF"
+                    points="150 150 250 150 250 100 150 100" />
+                <!-- Circle -->
+                <path fill="#3399FF"
+                    d="M 150 50 L 150 150 L 250 150 C 250 150, 250 250, 150 250" />
+
+                <line x1="150" y1="0" x2="150" y2="300" stroke="black" stroke-width="2" />
+                <line x1="0" y1="150" x2="300" y2="150" stroke="black" stroke-width="2" />
+                <polyline points="144 12 150 0 156 12"  stroke="black" stroke-width="2" fill="none" />
+                <polyline points="288 144 300 150 288 156"  stroke="black" stroke-width="2" fill="none" />
+
+                <line x1="50" y1="145" x2="50" y2="155" stroke="black" stroke-width="1" />
+                <line x1="100" y1="145" x2="100" y2="155" stroke="black" stroke-width="1" />
+                <line x1="200" y1="145" x2="200" y2="155" stroke="black" stroke-width="1" />
+                <line x1="250" y1="145" x2="250" y2="155" stroke="black" stroke-width="1" />
+
+                <line x1="145" y1="50" x2="155" y2="50" stroke="black" stroke-width="1" />
+                <line x1="145" y1="100" x2="155" y2="100" stroke="black" stroke-width="1" />
+                <line x1="145" y1="200" x2="155" y2="200" stroke="black" stroke-width="1" />
+                <line x1="145" y1="250" x2="155" y2="250" stroke="black" stroke-width="1" />
+                
+                <circle *ngFor="let shot of filterShotsByRadius(form.value.r ? form.value.r : 1)"
+                    r="2"
+                    [attr.cx] = "form.value.r && form.value.r > 0 ? shot.x * R_SIZE / form.value.r + GRAPH_SIZE / 2 : GRAPH_SIZE * 2"
+                    [attr.cy] = "form.value.r && form.value.r > 0 ? GRAPH_SIZE / 2 - shot.y * R_SIZE / form.value.r : GRAPH_SIZE * 2"
+                    [attr.fill] = "shot.hit ? 'green' : 'red'"
+                />
+
+                <text fill="black" x="288" y="140">X</text>
+                <text fill="black" x="157" y="10">Y</text>
+
+                <text fill="black" x="45" y="140">{{form.value.r && form.value.r > 0 ? -form.value.r : '-R'}}</text>
+                <text fill="black" x="95" y="140">{{form.value.r && form.value.r > 0 ? -form.value.r / 2 : '-R/2'}}</text>
+                <text fill="black" x="195" y="140">{{form.value.r && form.value.r > 0 ? form.value.r / 2 : 'R/2'}}</text>
+                <text fill="black" x="245" y="140">{{form.value.r && form.value.r > 0 ? form.value.r : 'R'}}</text>
+
+                <text fill="black" x="160" y="255">{{form.value.r && form.value.r > 0 ? -form.value.r : '-R'}}</text>
+                <text fill="black" x="160" y="205">{{form.value.r && form.value.r > 0 ? -form.value.r / 2 : '-R/2'}}</text>
+                <text fill="black" x="160" y="105">{{form.value.r && form.value.r > 0 ? form.value.r / 2 : 'R/2'}}</text>
+                <text fill="black" x="160" y="55">{{form.value.r && form.value.r > 0 ? form.value.r : 'R'}}</text>
+            </svg>
+        </div>
+
+        <div id="input-card" class="ui-widget">
+            <form [formGroup]="form" (ngSubmit)="newShot()">
+                <div class="input-container">
+                    <label for="x-input">X: {{form.value.x}}</label>
+                    <p-slider id="x-input" formControlName="x" [min]="-3" [max]="5" [step]="0.1"></p-slider>
+                </div>
+
+                <div class="input-container">
+                    <label for="y-input">Y: {{form.value.y}}</label>
+                    <p-slider id="y-input" formControlName="y" [min]="-5" [max]="3" [step]="0.1"></p-slider>
+                </div>
+
+                <div class="input-container">
+                    <label for="R">R:</label>
+                    <p-dropdown 
+                        [style]="{ 'width': '100%' }"
+                        id="r-input"
+                        [options]="radiusValues" 
+                        formControlName="r" 
+                        placeholder="Выберите радиус" />  
+                </div>
+
+                <p-button id="submit-dot-button" type="submit" [label]="'HOME.SUBMIT' | translate"></p-button>
+            </form>
+        </div>
+    </div>
+
+    <div id="history-card" class="ui-widget">
+        <div class="history-card-header">
+            <h3 id="history-title">{{ "HOME.HISTORY" | translate }}</h3>
+            <div class="history-buttons">
+                <p-button class="align-right" severity="secondary" (onClick)="clearShots()" icon="pi pi-trash" iconPos="left" size="small"></p-button>
+            </div>
+        </div>
+        <p-table 
+        [value]="shots"
+        [paginator]="true"
+        [rows]="10"
+        [paginatorPosition]="'bottom'"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>R</th>
+                    <th *ngIf="layout.desktop || layout.tablet">{{ "HOME.HIT" | translate }}</th>
+                    <th *ngIf="layout.desktop || layout.tablet">{{ "HOME.TIME" | translate }}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-shot>
+                <tr [ngClass]="{'hit': shot.hit, 'miss': !shot.hit}">
+                    <td>{{ shot.x | number: "1.2-2" }}</td>
+                    <td>{{ shot.y | number: "1.2-2" }}</td>
+                    <td>{{ shot.r | number: "1.2-2" }}</td>
+                    <td *ngIf="layout.desktop || layout.tablet">{{ (shot.hit ? 'HOME.HIT' : 'HOME.MISS') | translate }}</td>
+                    <td *ngIf="layout.desktop || layout.tablet">{{ shot.createdAt | date:'HH:mm:ss dd.MM'}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

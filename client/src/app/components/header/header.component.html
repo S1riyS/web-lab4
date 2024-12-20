@@ -1,0 +1,30 @@
+<div id="header" class="ui-widget">
+    <div *ngIf="layout.desktop || layout.tablet" class="align-left">
+        <div>
+            {{ 'HEADER.AUTHOR_NAME' | translate }}
+            <br />
+            {{ 'HEADER.AUTHOR_GROUP' | translate }}
+            <br />
+            {{ 'HEADER.VARIANT' | translate }}
+        </div>
+    </div>
+
+    <h1 *ngIf="layout.desktop" class="align-center">
+        {{ 'HEADER.TITLE' | translate }}
+    </h1>
+
+    <h2 *ngIf="layout.tablet" class="align-center">
+        {{ 'HEADER.TITLE' | translate }}
+    </h2>
+
+    <div *ngIf="layout.mobile" class="align-left">
+        <h2>
+            {{ 'HEADER.TITLE' | translate }}
+        </h2>
+    </div>
+
+    <div class="align-right">
+        <app-locale-switch></app-locale-switch>
+        <p-button id="logout-btn" *ngIf="isLoggedIn()" (onClick)="logOut()" [label]="'HEADER.LOGOUT' | translate" icon="pi pi-sign-out" severity="danger" iconPos="right" [outlined]="true" size="small"></p-button>
+    </div>
+</div>

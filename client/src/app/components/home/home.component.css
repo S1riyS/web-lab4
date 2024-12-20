@@ -1,0 +1,88 @@
+.hit {
+    background-color: rgba(0, 255, 8, 0.15);
+}
+
+.miss {
+    background-color: rgba(255, 8, 0, 0.15);
+}
+
+.ui-widget {
+    background-color: var(--surface-0);
+    padding: 1em;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    color: var(--text-color);
+    border-radius: 0.25em;
+    margin: 1em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+p-slider {
+    margin: 1em;
+}
+
+#submit-dot-button {
+    margin-top: 10px;
+    align-self: center;
+}
+
+#svg-card {
+    width: min-content;
+}
+
+#svg-figure {
+    cursor: pointer;
+}
+
+#svg-figure text {
+    cursor: pointer;
+}
+
+.history-card-header {
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media only screen and (min-width: 1032px) {
+    #content-container {
+        display: flex;
+    }
+
+    #history-card {
+        flex-grow: 1;
+    }
+}
+
+@media only screen and (min-width: 777px) and (max-width: 1031.98px) {
+    #input-container {
+        display: flex;
+        margin: 0 auto;
+        width: min-content;
+    }
+
+    #input-card {
+        display: flex;
+        flex-direction: column;
+        margin: auto 0;
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 776.98px) {
+    #input-container {
+        display: flex;
+        flex-direction: column;
+        width: min-content;
+        margin: 0 auto;
+    }
+
+    #input-card {
+        margin-top: 0;
+    }
+}

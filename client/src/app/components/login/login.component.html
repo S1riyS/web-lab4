@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div id="login-container">
+  <p-card id="login-card" [header]="'LOGIN.LOGIN' | translate">
+    <div>
+      {{ "LOGIN.DONT_HAVE_ACCOUNT" | translate }} <a routerLink="/register" routerLinkActive="active">{{ "LOGIN.SIGN_UP_HERE" | translate }}</a>
+    </div>
+    <p-divider></p-divider>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="input-container">
+        <label for="username-input">{{ "LOGIN.LABEL.USERNAME" | translate }}</label>
+        <input pInputText type="text" class="p-inputtext-sm" id="username-input" formControlName="username" />
+      </div>
+      <div class="input-container">
+        <label for="password-input">{{ "LOGIN.LABEL.PASSWORD" | translate }}</label>
+        <p-password id="password-input" formControlName="password" class="p-inputtext-sm" [feedback]="false" [toggleMask]="true"></p-password>
+      </div>
+
+      <div *ngIf="loginError" class="error-message">
+        {{ "LOGIN.LOGIN_ERROR" | translate }}
+      </div>
+
+      <p-button type="submit" [label]="'LOGIN.LOGIN' | translate"></p-button>
+    </form>
+  </p-card>
+</div>
