@@ -15,7 +15,7 @@ build-client:
 build-all: build-server build-client
 
 up: build-server
-	docker-compose up --build
+	@docker-compose up --build
 
 down:
 	@docker-compose down
