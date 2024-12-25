@@ -48,7 +48,7 @@ export class AuthService {
     this.logOut(); 
     return this.http.post<Token>(
       `${environment.apiUrl}${environment.registerPath}`, 
-      { username,  "email": "user@example.com", password }
+      { username, password }
     ).pipe(
       map(
         (result) => {
