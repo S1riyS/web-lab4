@@ -19,6 +19,9 @@ RUN npm run build --prod
 # Use Nginx to serve the application
 FROM nginx:alpine
 
+# Copy the Nginx configuration
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
 # Copy the built application from the previous stage
 COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
 
