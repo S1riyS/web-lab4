@@ -24,6 +24,10 @@ public class UserService {
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
 
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
     public User getCurrentUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return getByUsername(username);

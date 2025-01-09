@@ -34,9 +34,8 @@ public class AuthService {
      * @return токен
      */
     public JwtAuthResponse signUp(SignUpRequest request) {
-
-        User candidate = userService.getByUsername(request.getUsername());
-        if (candidate != null) {
+        // Check if user with this username already exists
+        if (userService.existsByUsername(request.getUsername())) {
             throw new BadRequestException("Sign up error", "User with this username already exists");
         }
 
