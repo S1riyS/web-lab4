@@ -42,7 +42,7 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
         if (userDetails instanceof User customUserDetails) {
             claims.put("id", customUserDetails.getId());
-            claims.put("role", customUserDetails.getRole());
+            claims.put("permissions", customUserDetails.getPermissions());
         }
         return generateToken(claims, userDetails);
     }
@@ -54,9 +54,16 @@ public class JwtService {
      * @param userDetails данные пользователя
      * @return true, если токен валиден
      */
-    public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String userName = extractUserName(token);
-        return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
+    public boolean isTokenValid(String token) {
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(getSigningKey())
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (Exception ignored) {
+            return false;
+        }
     }
 
     /**
@@ -95,6 +102,8 @@ public class JwtService {
      * @param token токен
      * @return true, если токен просрочен
      */
+
+    @SuppressWarnings("unused")
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
